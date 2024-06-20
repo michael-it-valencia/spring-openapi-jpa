@@ -1,0 +1,87 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.5'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id "org.openapi.generator" version "7.5.0"
+}
+
+group = 'com.michael.valencia.prototypes'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.2.21'
+	implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+	implementation 'jakarta.validation:jakarta.validation-api:3.1.0-M2'
+	implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+	annotationProcessor 'org.projectlombok:lombok:1.18.32'
+	testCompileOnly 'org.projectlombok:lombok:1.18.32'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
+    
+    
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+// OPENAPI GENERATED SOURCESET
+sourceSets {
+    main {
+        java {
+            srcDirs("$buildDir/generated/src/main/java")
+        }
+    }
+}
+
+// OPENAPI GENERATED SOURCESET
+sourceSets {
+    main {
+        java {
+            srcDirs("$buildDir/generated/sources/annotatationpProcessor/java")
+        }
+    }
+}
+
+
+openApiValidate {
+    inputSpec.set("$rootDir/src/main/resources/spec/openapi.yaml")
+}
+
+openApiGenerate {
+    generatorName.set("spring")
+    inputSpec.set("$rootDir/src/main/resources/spec/openapi.yaml")
+    outputDir.set("$buildDir/generated")
+    apiPackage.set("com.michael.valencia.prototypes.api.openapi")
+    modelPackage.set("com.michael.valencia.prototypes.api.openapi.model")
+    modelNameSuffix.set("Dto")
+    configOptions = [
+            useJakartaEe: "true",
+            interfaceOnly: "true"   
+        ]
+}
+tasks.openApiGenerate{
+    dependsOn "openApiValidate"
+}
+
+tasks.compileJava{
+    dependsOn "openApiGenerate"
+}

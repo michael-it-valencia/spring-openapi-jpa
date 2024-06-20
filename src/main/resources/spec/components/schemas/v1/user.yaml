@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: generated user id
+    example: 1
+  email:
+    type: string
+    description: user email address
+    example: test@test.com
+  firstname:
+    type: string
+    description: user firstname
+    example: John
+  lastname:
+    type: string
+    description: user lastname
+    example: Doe

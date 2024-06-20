@@ -1,0 +1,34 @@
+get:
+  tags:
+    - users
+  summary: Get all users of Prototype API
+  description: Get all users of Prototype API
+  operationId: listUsers
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/v1/users.yaml
+post:
+  tags:
+    - users
+  summary: Create new user of Prototype API
+  description: Create new user of Prototype API
+  operationId: createUser
+  requestBody:
+    description: User details user creation
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/v1/user.yaml
+    required: true
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/v1/user.yaml
+   

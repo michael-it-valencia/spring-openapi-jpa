@@ -1,0 +1,46 @@
+get:
+  tags:
+    - users
+  summary: Find a user by ID of Prototype API
+  description: Find a user by ID of Prototype API
+  operationId: searchUserById
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/v1/user.yaml
+put:
+  tags:
+    - users
+  summary: Update user of Prototype API
+  description: Update user of Prototype API
+  operationId: updateUser
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+  requestBody:
+    description: User details to be modified
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/v1/user.yaml
+    required: true
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/v1/user.yaml
+   
