@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.ecoglobalconsulting.elearningacademy.api.user")
+@ComponentScan(basePackages = "com.michael.valencia.prototypes.api.template")
 public class WebConfig {
     
 }
